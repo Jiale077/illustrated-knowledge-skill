@@ -1,0 +1,4 @@
+interface:
+  display_name: "图文知识学习"
+  short_description: "给出主题，查证资料并生成讲透原理的图文知识文章，保存到 Obsidian"
+  default_prompt: "用 $illustrated-knowledge 学习这个主题，按 Jiale 的 AI 工坊风格配图并保存到 Obsidian。"

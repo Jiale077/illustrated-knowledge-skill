@@ -1,0 +1,10 @@
+# Per-user vault paths and local settings
+config.local.json
+
+# Runtime and generated work
+__pycache__/
+*.py[cod]
+.DS_Store
+work/
+output/
+.venv/
