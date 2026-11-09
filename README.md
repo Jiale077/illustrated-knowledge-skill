@@ -1,10 +1,12 @@
-# 图文知识学习 · Illustrated Knowledge
+# 图文知识学习 Skill · Illustrated Knowledge
 
 **给一个主题，查清资料，讲透原理，留下图文笔记。**
 
 ![Jiale的AI工坊：图文知识学习，从查资料到写作配图，再存入 Obsidian](docs/images/hero-jiale-ai-workshop.png)
 
 [能做什么](#它能帮你做什么) · [看产出](#一次学习会留下什么) · [安装使用](#快速开始) · [制作项目介绍](#也可以用它写项目-readme) · [常见问题](#常见问题)
+
+> **运行环境：**推荐在支持技能、联网、文件读写和图片生成的 **Codex / ChatGPT 环境**中使用；其他 Agent 也需接入可调用的生图模型（如 Image）。直接保存到本机 Obsidian，还需要本地文件访问能力。
 
 「Jiale 的 AI 工坊」的一套图文学习技能。让 Agent 把检索、解释、配图和整理连成一条流程：你提出主题，它沿着问题把原理讲清，再把文章、图片和来源一起保存下来。也可以用同样的方法，为 GitHub 项目制作读得懂、跟得上的图文 README。
 
@@ -40,13 +42,15 @@
 
 ## 快速开始
 
+下面以 Codex 为例。技能调用名为 `$illustrated-knowledge`。
+
 ### 1. 安装技能
 
 在 Codex 中发送：
 
 ```text
 用 $skill-installer 帮我安装这个仓库里的 illustrated-knowledge 技能：
-https://github.com/Jiale077/illustrated-knowledge
+https://github.com/Jiale077/illustrated-knowledge-skill
 ```
 
 Codex 可从仓库安装技能并自动发现；如果没有出现，重启 Codex。安装与本地技能目录见 [OpenAI 官方说明](https://learn.chatgpt.com/docs/build-skills)。
@@ -58,11 +62,11 @@ Codex 可从仓库安装技能并自动发现；如果没有出现，重启 Code
 
 ```sh
 mkdir -p "$HOME/.agents/skills"
-git clone https://github.com/Jiale077/illustrated-knowledge.git \
+git clone https://github.com/Jiale077/illustrated-knowledge-skill.git \
   "$HOME/.agents/skills/illustrated-knowledge"
 ```
 
-确保 `SKILL.md` 位于 `illustrated-knowledge` 目录根下。已有安装时沿用原目录更新，避免复制出第二份同名技能。其他 Agent 需要支持 `SKILL.md`、文件读写、联网检索和图片生成。
+确保 `SKILL.md` 位于 `illustrated-knowledge` 目录根下。已有安装时沿用原目录更新，避免复制出第二份同名技能。其他 Agent 需要支持 `SKILL.md`、文件读写、联网检索，并接入实际可调用的生图模型。
 
 </details>
 
@@ -138,15 +142,21 @@ README 模式输出项目内的 Markdown、封面、必要示例和提示词。�
 
 ## 运行环境与可选工具
 
-| 能力 | 需要什么 |
-| --- | --- |
-| 阅读、查证与写作 | 能联网并读写文件的 Agent；本仓库以 Codex 使用方式示范 |
-| 生成和修改配图 | 宿主的原生 Image / imagegen 能力 |
-| 知识笔记归档 | Python 3.10+ 与可写入的 Obsidian 库；脚本只用标准库 |
-| 平台搜索与读取 | 优先复用 [Agent Reach](https://github.com/Panniantong/Agent-Reach)，渠道以实际配置为准 |
-| 辅助写作与配图规划 | 可选 [content-research-writer](https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer)、[baoyu-article-illustrator](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-article-illustrator) |
+本仓库提供工作流与归档工具，使用宿主已配置的模型和工具完成任务。
 
-已有工具直接复用，第三方技能不随本包分发。没有可用的图片生成能力时，保留草稿和配图计划，并说明尚缺的图片；不能把图片计划当作完成图文结果。
+| 使用环境 | 需要具备的能力 | 保存方式 |
+| --- | --- | --- |
+| **Codex 本机环境** | 能加载技能、联网、读写文件，并调用生图工具 | 有目标库访问能力时，直接保存到本机 Obsidian |
+| **ChatGPT 环境** | 当前使用入口支持技能或执行本套指令、联网、文件处理和图片生成 | 有本机文件访问能力时入库；否则导出文章与图片后导入 |
+| **其他 Agent 环境** | 能读取 `SKILL.md`、检索和操作文件，并已接入可调用的生图模型 | 按实际文件工具保存到项目或笔记库 |
+
+仅有文本生成能力时，可以完成研究和草稿；完整图文交付还需要生图模型。本技能不附带模型，具备原生 Image / imagegen 时优先复用，也可使用其他环境已配置且可调用的生图工具。ChatGPT 的技能加载和文件访问以实际入口能力为准，安装步骤以本页的 Codex 示例为准。
+
+- **笔记归档**：Python 3.10+ 与可写入的 Obsidian 库；归档脚本只使用标准库。
+- **平台资料**：优先复用 [Agent Reach](https://github.com/Panniantong/Agent-Reach)，渠道以实际配置为准。
+- **写作与配图规划**：可选 [content-research-writer](https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer)、[baoyu-article-illustrator](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-article-illustrator)。
+
+已有工具直接复用，第三方技能不随本包分发。没有可用的图片生成能力时，保留草稿和配图计划，并说明尚缺的图片。
 
 ## 常见问题
 

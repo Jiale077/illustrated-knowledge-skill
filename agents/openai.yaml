@@ -1,4 +1,4 @@
 interface:
-  display_name: "图文知识学习"
+  display_name: "图文知识学习 Skill"
   short_description: "主题学习与项目介绍，查证资料、生成品牌配图，完成图文笔记或 README"
   default_prompt: "用 $illustrated-knowledge 学习这个主题，按 Jiale 的 AI 工坊风格配图并保存到 Obsidian。"
